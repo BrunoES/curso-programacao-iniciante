@@ -1,0 +1,14 @@
+{
+  "name": "crud_carros_nodejs_mysql",
+  "version": "1.0.0",
+  "description": "Cadastro de carros.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bruno H. Silva de Souza",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}
