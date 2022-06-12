@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "40737a6a-1797-4891-b20f-3672341b8288",
+		"name": "crud-carros",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4128185"
+	},
+	"item": [
+		{
+			"name": "Consulta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/carros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConsultaPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/carros/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carros",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleção",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/carros/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carros",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inserção",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCarro\": null,\r\n    \"placa\": \"AIB4463\",\r\n    \"nomeModelo\": \"Corsa\",\r\n    \"nomeMarca\": \"Chevrolet\",\r\n    \"cor\": \"Vermelho\",\r\n    \"anoFabricacao\": 1998,\r\n    \"ativo\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alteração",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCarro\": 7,\r\n    \"placa\": \"AIB4463\",\r\n    \"nomeModelo\": \"Corsa\",\r\n    \"nomeMarca\": \"Chevrolet\",\r\n    \"cor\": \"Vermelho\",\r\n    \"anoFabricacao\": 1998,\r\n    \"ativo\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/carros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"carros"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
