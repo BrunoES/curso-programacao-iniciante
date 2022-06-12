@@ -1,0 +1,6 @@
+Adicionar biblioteca axios ao arquivo html:
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+Documentação axios:
+https://axios-http.com/docs/api_intro
+https://axios-http.com/docs/req_config
