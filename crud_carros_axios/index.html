@@ -5,18 +5,80 @@
         <script type="text/javascript">
 
             // GET request for remote image in node.js
-            axios({
-            method: 'get',
-            url: 'http://localhost:8080/carros',
-            responseType: 'json'
-            })
-            .then(function (response) {
-                console.dir(response);
-            });
-            
+            function consultaCarros(content,morecontent) {
+                var resultado;
+
+                axios({
+                method: 'get',
+                url: 'http://localhost:8080/carros',
+                responseType: 'json'
+                })
+                .then(function (response) {
+                    console.log(response.data.forEach(element => {
+                        populaTabela(element);
+                    }));
+                });
+            }
+
+            function populaTabela(element) {
+                if (!document.getElementsByTagName) return;
+                tabBody=document.getElementById("tabela_carros");
+                row=document.createElement("tr");
+                
+                idCarroCell = document.createElement("td");
+                placaCell = document.createElement("td");
+                modeloCell = document.createElement("td");
+                marcaCell = document.createElement("td");
+                corCell = document.createElement("td");
+                anoCell = document.createElement("td");
+                ativoCell = document.createElement("td");
+
+                idCarroNode=document.createTextNode(element.id_carro);
+                placaNode=document.createTextNode(element.placa);
+                modeloNode=document.createTextNode(element.nome_modelo);
+                marcaNode=document.createTextNode(element.nome_marca);
+                corNode=document.createTextNode(element.cor);
+                anoNode=document.createTextNode(element.ano_fabricacao);
+                ativoNode=document.createTextNode(element.ativo);
+
+                idCarroCell.appendChild(idCarroNode);
+                placaCell.appendChild(placaNode);
+                modeloCell.appendChild(modeloNode);
+                marcaCell.appendChild(marcaNode);
+                corCell.appendChild(corNode);
+                anoCell.appendChild(anoNode);
+                ativoCell.appendChild(ativoNode);
+
+                row.appendChild(idCarroCell);
+                row.appendChild(placaCell);
+                row.appendChild(modeloCell);
+                row.appendChild(marcaCell);
+                row.appendChild(corCell);
+                row.appendChild(anoCell);
+                row.appendChild(ativoCell);
+
+                tabBody.appendChild(row);
+            }
+
+            consultaCarros();
         </script>
     </head>
     <body>
         <h1>CRUD Carros</h1>
+        <table class="table" id="tabela_carros">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Nome Modelo</th>
+                <th scope="col">Nome Marca</th>
+                <th scope="col">Cor</th>
+                <th scope="col">Ano Fabricação</th>
+                <th scope="col">Ativo</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </body>
 </html>
