@@ -4,22 +4,23 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script type="text/javascript">
 
-            // GET request for remote image in node.js
-            function consultaCarros(content,morecontent) {
+            function consultaCarros() {
                 var resultado;
 
                 axios({
-                method: 'get',
-                url: 'http://localhost:8080/carros',
-                responseType: 'json'
+                    method: 'get',
+                    url: 'http://localhost:8080/carros',
+                    responseType: 'json'
                 })
                 .then(function (response) {
-                    console.log(response.data.forEach(element => {
+                    response.data.forEach(element => {
                         populaTabela(element);
-                    }));
+                    });
                 });
             }
 
+            // Fazer antes assim, depois explicar a melhor forma abaixo
+            /*
             function populaTabela(element) {
                 if (!document.getElementsByTagName) return;
                 tabBody=document.getElementById("tabela_carros");
@@ -59,6 +60,29 @@
 
                 tabBody.appendChild(row);
             }
+            */
+
+            function populaTabela(element) {
+                tabBody=document.getElementById("tabela_carros");
+                row=document.createElement("tr");
+
+                // Populando tabela
+                Object.values(element).forEach(value => {
+                    cell = document.createElement("td");
+                    node=document.createTextNode(value);
+                    cell.appendChild(node);
+                    row.appendChild(cell);
+                });
+
+                // Criando link a href para cadastro
+                var link = document.createElement("a");
+                link.setAttribute("href", `./cadastro.html?idCarro=${element.id_carro}`)
+                node=document.createTextNode("Editar");
+                link.appendChild(node);
+                row.appendChild(link);
+
+                tabBody.appendChild(row);
+            }
 
             consultaCarros();
         </script>
@@ -75,6 +99,7 @@
                 <th scope="col">Cor</th>
                 <th scope="col">Ano Fabricação</th>
                 <th scope="col">Ativo</th>
+                <th scope="col">#</th>
                 </tr>
             </thead>
             <tbody>

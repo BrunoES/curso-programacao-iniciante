@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script type="text/javascript">
+
+            function consultaCarro() {
+                let params = (new URL(document.location)).searchParams; // Obtêm parâmetros query string da requisição
+                var resultado;
+                var idCarro = params.get("idCarro");
+
+                axios({
+                    method: 'get',
+                    url: `http://localhost:8080/carros/${idCarro}`,
+                    responseType: 'json'
+                })
+                .then(function (response) {
+                    populaCampos(response.data);
+                });
+            }
+
+            function populaCampos(element) {
+                // TO DO
+                console.dir(element);
+            }
+
+            consultaCarro();
+        </script>
+    </head>
+    <body>
+        <h1>Cadastro de Carros</h1>
+    </body>
+</html>

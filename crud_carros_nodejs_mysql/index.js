@@ -35,7 +35,7 @@ server.get('/carros/:idCarro', function (req, res, next) {
   con.query(sql, idCarro, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
-    res.send(result);
+    res.send(result[0]); // Pega apenas o primeiro objeto, para não retornar um array
   });
 });
 
