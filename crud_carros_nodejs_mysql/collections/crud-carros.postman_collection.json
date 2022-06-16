@@ -78,7 +78,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idCarro\": null,\r\n    \"placa\": \"AIB4463\",\r\n    \"nomeModelo\": \"Corsa\",\r\n    \"nomeMarca\": \"Chevrolet\",\r\n    \"cor\": \"Vermelho\",\r\n    \"anoFabricacao\": 1998,\r\n    \"ativo\": true\r\n}",
+					"raw": "{\r\n    \"id\": null,\r\n    \"placa\": \"AIB4463\",\r\n    \"modelo\": \"Corsa\",\r\n    \"marca\": \"Chevrolet\",\r\n    \"cor\": \"Vermelho\",\r\n    \"ano\": 1998,\r\n    \"ativo\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -112,7 +112,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idCarro\": 7,\r\n    \"placa\": \"AIB4463\",\r\n    \"nomeModelo\": \"Corsa\",\r\n    \"nomeMarca\": \"Chevrolet\",\r\n    \"cor\": \"Vermelho\",\r\n    \"anoFabricacao\": 1998,\r\n    \"ativo\": true\r\n}",
+					"raw": "{\r\n    \"id\": 7,\r\n    \"placa\": \"AIB4463\",\r\n    \"modelo\": \"Corsa\",\r\n    \"marca\": \"Chevrolet\",\r\n    \"cor\": \"Vermelho\",\r\n    \"ano\": 1998,\r\n    \"ativo\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

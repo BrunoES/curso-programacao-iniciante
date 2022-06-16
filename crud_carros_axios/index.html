@@ -48,12 +48,12 @@
                 anoCell = document.createElement("td");
                 ativoCell = document.createElement("td");
 
-                idCarroNode=document.createTextNode(element.id_carro);
+                idCarroNode=document.createTextNode(element.id);
                 placaNode=document.createTextNode(element.placa);
-                modeloNode=document.createTextNode(element.nome_modelo);
-                marcaNode=document.createTextNode(element.nome_marca);
+                modeloNode=document.createTextNode(element.modelo);
+                marcaNode=document.createTextNode(element.marca);
                 corNode=document.createTextNode(element.cor);
-                anoNode=document.createTextNode(element.ano_fabricacao);
+                anoNode=document.createTextNode(element.ano);
                 ativoNode=document.createTextNode(element.ativo);
 
                 idCarroCell.appendChild(idCarroNode);
@@ -81,19 +81,39 @@
                 row=document.createElement("tr");
 
                 // Populando tabela
-                Object.values(element).forEach(value => {
+                /*Object.values(element).forEach(value => {
                     cell = document.createElement("td");
                     node=document.createTextNode(value);
                     cell.appendChild(node);
                     row.appendChild(cell);
                 });
+                */
+             
+                Object.entries(element).forEach(entry => {
+                    const [key, value] = entry;
+                    var valor = value;
+
+                    cell = document.createElement("td");
+
+                    if(key == "ativo") {
+                        valor = "Inativo";
+                        if(value == 1) {
+                            valor = "Ativo"
+                        }
+                    }
+                    node=document.createTextNode(valor);
+                    
+                    cell.appendChild(node);
+                    row.appendChild(cell);
+                });
+
 
                 // Criando link a href para cadastro
                 var linkEditar = document.createElement("a");
                 var botaoExcluir = document.createElement("button");
 
-                linkEditar.setAttribute("href", `./cadastro.html?idCarro=${element.id_carro}`)
-                botaoExcluir.setAttribute("onClick", `excluirCarro(${element.id_carro})`)
+                linkEditar.setAttribute("href", `./cadastro.html?idCarro=${element.id}`)
+                botaoExcluir.setAttribute("onClick", `excluirCarro(${element.id})`)
 
                 nodeEditar=document.createTextNode("Editar");
                 nodeExcluir=document.createTextNode("Excluir");
@@ -139,7 +159,7 @@
                 <th scope="col">Nome Marca</th>
                 <th scope="col">Cor</th>
                 <th scope="col">Ano Fabricação</th>
-                <th scope="col">Ativo</th>
+                <th scope="col">Status</th>
                 <th scope="col">#</th>
                 </tr>
             </thead>

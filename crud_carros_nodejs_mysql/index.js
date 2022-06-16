@@ -30,10 +30,10 @@ server.get('/carros', function (req, res, next) {
   });
 });
 
-server.get('/carros/:idCarro', function (req, res, next) {
-  var sql = "SELECT * FROM crud_carros.carros WHERE id_carro = ?";
-  var idCarro = req.params.idCarro;
-  con.query(sql, idCarro, function (err, result, fields) {
+server.get('/carros/:id', function (req, res, next) {
+  var sql = "SELECT * FROM crud_carros.carros WHERE id = ?";
+  var id = req.params.id;
+  con.query(sql, id, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
     res.send(result[0]); // Pega apenas o primeiro objeto, para não retornar um array
@@ -42,7 +42,7 @@ server.get('/carros/:idCarro', function (req, res, next) {
 
 server.post('/carros', function (req, res, next) {
   var carro = req.body;
-  var sql = `INSERT INTO crud_carros.carros (placa, nome_modelo, nome_marca, cor, ano_fabricacao, ativo) VALUES ('${carro.placa}', '${carro.nomeModelo}', '${carro.nomeMarca}', '${carro.cor}', ${carro.anoFabricacao}, ${carro.ativo})`;
+  var sql = `INSERT INTO crud_carros.carros (placa, modelo, marca, cor, ano, ativo) VALUES ('${carro.placa}', '${carro.modelo}', '${carro.marca}', '${carro.cor}', ${carro.ano}, ${carro.ativo})`;
   
   console.dir(req.body);
   console.log(sql);
@@ -58,12 +58,12 @@ server.put('/carros', function (req, res, next) {
   var carro = req.body;
   var sql = `UPDATE crud_carros.carros
               SET placa = '${carro.placa}',
-                  nome_modelo = '${carro.nomeModelo}',
-                  nome_marca = '${carro.nomeMarca}',
+                  modelo = '${carro.modelo}',
+                  marca = '${carro.marca}',
                   cor = '${carro.cor}',
-                  ano_fabricacao = ${carro.anoFabricacao},
+                  ano = ${carro.ano},
                   ativo = ${carro.ativo}
-              WHERE id_carro = ${carro.idCarro}`;
+              WHERE id = ${carro.id}`;
 
   console.dir(req.body);
   console.log(sql);
@@ -75,10 +75,10 @@ server.put('/carros', function (req, res, next) {
   });
 });
 
-server.del('/carros/:idCarro', function (req, res, next) {
-  var sql = "DELETE FROM crud_carros.carros WHERE id_carro = ?";
-  var idCarro = req.params.idCarro;
-  con.query(sql, idCarro, function (err, result, fields) {
+server.del('/carros/:id', function (req, res, next) {
+  var sql = "DELETE FROM crud_carros.carros WHERE id = ?";
+  var id = req.params.id;
+  con.query(sql, id, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
     res.send('Linhas deletadas: ' + result.affectedRows);
