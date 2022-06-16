@@ -1,6 +1,6 @@
-const mysql = require('mysql');
-const restify = require('restify');
-const corsMiddleware = require('restify-cors-middleware');
+const mysql = require("mysql");
+const restify = require("restify");
+const corsMiddleware = require("restify-cors-middleware");
 const cors = corsMiddleware({
   origins: ["*"],
   allowHeaders: ["Authorization"],
@@ -14,15 +14,15 @@ var con = mysql.createConnection({
 });
 
 const server = restify.createServer({
-  name: 'crud-carros-server',
-  version: '1.0.0'
+  name: "crud-carros-server",
+  version: "1.0.0"
 });
 
 server.use(restify.plugins.bodyParser({ mapParams: true }));
 server.pre(cors.preflight); // Precisa usar restify 7.x.x + restify-cors-middleware para ser compatível com cors preflight.
 server.use(cors.actual);
 
-server.get('/carros', function (req, res, next) {
+server.get("/carros", function (req, res, next) {
   con.query("SELECT * FROM crud_carros.carros", function (err, result, fields) {
     if (err) throw err;
     console.log(result);
@@ -30,7 +30,7 @@ server.get('/carros', function (req, res, next) {
   });
 });
 
-server.get('/carros/:id', function (req, res, next) {
+server.get("/carros/:id", function (req, res, next) {
   var sql = "SELECT * FROM crud_carros.carros WHERE id = ?";
   var id = req.params.id;
   con.query(sql, id, function (err, result, fields) {
@@ -40,7 +40,7 @@ server.get('/carros/:id', function (req, res, next) {
   });
 });
 
-server.post('/carros', function (req, res, next) {
+server.post("/carros", function (req, res, next) {
   var carro = req.body;
   var sql = `INSERT INTO crud_carros.carros (placa, modelo, marca, cor, ano, ativo) VALUES ('${carro.placa}', '${carro.modelo}', '${carro.marca}', '${carro.cor}', ${carro.ano}, ${carro.ativo})`;
   
@@ -50,11 +50,11 @@ server.post('/carros', function (req, res, next) {
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log(result);
-    res.send('Linhas Inseridas: ' + result.affectedRows);
+    res.send("Linhas Inseridas: " + result.affectedRows);
   });
 });
 
-server.put('/carros', function (req, res, next) {
+server.put("/carros", function (req, res, next) {
   var carro = req.body;
   var sql = `UPDATE crud_carros.carros
               SET placa = '${carro.placa}',
@@ -71,22 +71,22 @@ server.put('/carros', function (req, res, next) {
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log(result);
-    res.send('Linhas Alteradas: ' + result.affectedRows);
+    res.send("Linhas Alteradas: " + result.affectedRows);
   });
 });
 
-server.del('/carros/:id', function (req, res, next) {
+server.del("/carros/:id", function (req, res, next) {
   var sql = "DELETE FROM crud_carros.carros WHERE id = ?";
   var id = req.params.id;
   con.query(sql, id, function (err, result, fields) {
     if (err) throw err;
     console.log(result);
-    res.send('Linhas deletadas: ' + result.affectedRows);
+    res.send("Linhas deletadas: " + result.affectedRows);
   });
 });
 
 server.listen(8080, function () {
-  console.log('%s listening at %s', server.name, server.url);
+  console.log("%s listening at %s", server.name, server.url);
 });
 
 con.connect(function(err) {

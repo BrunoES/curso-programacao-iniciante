@@ -58,20 +58,20 @@ function realizarOperacao() {
 
     // Primeiro fazer IF, depois mudar para Case
     switch (operacao) {
-    case 'soma':
+    case "soma":
         resultado = somar(valor1, valor2);
         break;
-    case 'subtracao':
+    case "subtracao":
         resultado = subtrair(valor1, valor2);
         break;
-    case 'divisao':
+    case "divisao":
         resultado = dividir(valor1, valor2);
         break;
-    case 'multiplicacao':
+    case "multiplicacao":
         resultado = multiplicar(valor1, valor2);
         break;
     default:
-        console.log('Operação não suportada');
+        console.log("Operação não suportada");
     }
 
     console.log(resultado);

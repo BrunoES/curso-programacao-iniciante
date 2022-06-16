@@ -12,7 +12,7 @@
 
                 if(idCarro != null) {
                     axios({
-                        method: 'get',
+                        method: "get",
                         url: `http://localhost:8080/carros/${idCarro}`,
                         responseType: 'json'
                     })
@@ -37,7 +37,7 @@
                 }
                 axios({
                     method: httpMethod,
-                    url: `http://localhost:8080/carros`,
+                    url: "http://localhost:8080/carros",
                     data: {
                         // fazer primeiro com chave-valor, depois refatorar para isso: "id": id, "placa": placa ....
                         id,
