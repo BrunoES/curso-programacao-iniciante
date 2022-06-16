@@ -1,5 +1,11 @@
 const mysql = require('mysql');
 const restify = require('restify');
+const corsMiddleware = require('restify-cors-middleware');
+const cors = corsMiddleware({
+  origins: ["*"],
+  allowHeaders: ["Authorization"],
+  exposeHeaders: ["Authorization"]
+});
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -13,13 +19,8 @@ const server = restify.createServer({
 });
 
 server.use(restify.plugins.bodyParser({ mapParams: true }));
-server.use(
-  function crossOrigin(req,res,next){
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "X-Requested-With");
-      return next();
-    }
-);
+server.pre(cors.preflight); // Precisa usar restify 7.x.x + restify-cors-middleware para ser compatível com cors preflight.
+server.use(cors.actual);
 
 server.get('/carros', function (req, res, next) {
   con.query("SELECT * FROM crud_carros.carros", function (err, result, fields) {

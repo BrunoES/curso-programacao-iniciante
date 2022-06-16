@@ -6,7 +6,6 @@
 
             function consultaCarros() {
                 var resultado;
-
                 axios({
                     method: 'get',
                     url: 'http://localhost:8080/carros',
@@ -16,6 +15,21 @@
                     response.data.forEach(element => {
                         populaTabela(element);
                     });
+                });
+            }
+
+            function excluirCarro(idCarro) {
+                var resultado;
+                //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+                axios({
+                    method: 'delete',
+                    url: `http://localhost:8080/carros/${idCarro}`,
+                    responseType: 'json'
+                })
+                .then(function (response) {
+                    console.dir(response.data);
+                    limpaTabela();
+                    consultaCarros();
                 });
             }
 
@@ -75,13 +89,40 @@
                 });
 
                 // Criando link a href para cadastro
-                var link = document.createElement("a");
-                link.setAttribute("href", `./cadastro.html?idCarro=${element.id_carro}`)
-                node=document.createTextNode("Editar");
-                link.appendChild(node);
-                row.appendChild(link);
+                var linkEditar = document.createElement("a");
+                var botaoExcluir = document.createElement("button");
+
+                linkEditar.setAttribute("href", `./cadastro.html?idCarro=${element.id_carro}`)
+                botaoExcluir.setAttribute("onClick", `excluirCarro(${element.id_carro})`)
+
+                nodeEditar=document.createTextNode("Editar");
+                nodeExcluir=document.createTextNode("Excluir");
+
+                linkEditar.appendChild(nodeEditar);
+                botaoExcluir.appendChild(nodeExcluir);
+
+                row.appendChild(linkEditar);
+                row.appendChild(botaoExcluir);
 
                 tabBody.appendChild(row);
+            }
+
+            /* Apresentar como opção, porém limpa até mesmo o cabeçalho.
+            function limpaTabela() {
+                var node = document.getElementById("tabela_carros");
+                while (node.hasChildNodes()) {
+                    node.removeChild(node.lastChild);
+                }
+            }
+            */
+
+            function limpaTabela() {
+                var tableHeaderRowCount = 1;
+                var table = document.getElementById("tabela_carros");
+                var rowCount = table.rows.length;
+                for (var i = tableHeaderRowCount; i < rowCount; i++) {
+                    table.deleteRow(tableHeaderRowCount);
+                }
             }
 
             consultaCarros();

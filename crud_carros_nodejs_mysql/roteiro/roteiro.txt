@@ -12,4 +12,8 @@ Executar este comando pra forçar a redefinição da senha do usuário root:
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1234';
 flush privileges;
 
-.
+Explicar que o Restify precisa ser na versão 7.x.x com restify-cors-middleware.
+https://codepunk.io/using-cors-with-restify-in-nodejs/
+https://github.com/restify/node-restify/issues/573
+https://stackoverflow.com/questions/54204080/cors-issue-with-restify
+https://stackoverflow.com/questions/34306514/can-not-get-cors-to-work-with-restify-all-preflight-options-return-with-405
