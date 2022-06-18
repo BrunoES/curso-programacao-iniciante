@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Carros - Cadastro</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script type="text/javascript">
+            var params = (new URL(document.location)).searchParams; // Obtêm parâmetros query string da requisição
+            var idCarro = params.get("idCarro");
+
+            function consultaCarro() {
+                var resultado;
+
+                if(idCarro != null) {
+                    axios({
+                        method: "get",
+                        url: `http://localhost:8080/carros/${idCarro}`,
+                        responseType: 'json'
+                    })
+                    .then(function (response) {
+                        populaCampos(response.data);
+                    });
+                }
+            }
+
+            function salvar() {
+                const id = document.getElementById("id").value;
+                const placa = document.getElementById("placa").value;
+                const modelo = document.getElementById("modelo").value;
+                const marca = document.getElementById("marca").value;
+                const cor = document.getElementById("cor").value;
+                const ano = document.getElementById("ano").value;
+                const ativo = document.getElementById("ativo").checked;
+                var httpMethod = "post";
+
+                if(idCarro != null) {
+                    httpMethod = "put";
+                }
+                axios({
+                    method: httpMethod,
+                    url: "http://localhost:8080/carros",
+                    data: {
+                        // fazer primeiro com chave-valor, depois refatorar para isso: "id": id, "placa": placa ....
+                        id,
+                        placa,
+                        modelo,
+                        marca,
+                        cor,
+                        ano,
+                        ativo
+                    },
+                    responseType: 'json'
+                })
+                .then(function (response) {
+                    // populaCampos(response.data);
+                });
+            }
+
+            function populaCampos(element) {
+                var campo;
+                console.dir(element);
+                Object.entries(element).forEach(entry => {
+                    const [key, value] = entry;
+                    document.getElementById(key).value = value;
+                    if(key == "ativo") {
+                        document.getElementById(key).checked = value;
+                    }
+                });
+            }
+
+            consultaCarro();
+        </script>
+    </head>
+    <body>
+        <a href="./index.html">Consulta de Carros</a>
+        <h1>Cadastro de Carros</h1>
+        <label for="id">ID:</label>
+        <input type="number" id="id" readonly/>
+        <br>
+        <label for="placa">Placa:</label>
+        <input type="text" id="placa" />
+        <br>
+        <label for="modelo">Nome Modelo:</label>
+        <input type="text" id="modelo" />
+        <br>
+        <label for="marca">Nome Marca:</label>
+        <input type="text" id="marca" />
+        <br>
+        <label for="cor">Cor:</label>
+        <input type="text" id="cor" />
+        <br>
+        <label for="ano">Ano de Fabricação:</label>
+        <input type="number" id="ano" />
+        <br>
+        <label for="ativo">Ativo:</label>
+        <input type="checkbox" id="ativo" value="true"/>
+        <br>
+        <button type="button" style="width:50" onclick="salvar()">Salvar</button>
+    </body>
+</html>
