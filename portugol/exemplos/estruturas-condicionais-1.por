@@ -19,10 +19,10 @@ programa
 		escreva("\n Informe uma posição para ser buscada no vetor: \n")
 		leia(posicaoConsulta)
 		
-		escreva("\n Realizando busca no vetor para o " + posicaoConsulta + "° numero: \n")
+		escreva("\n Realizando busca no vetor na posição " + posicaoConsulta + " \n")
 		para (inteiro posicao = 0; posicao < 10; posicao++)
 		{
-			se ((posicao + 1) == posicaoConsulta) {
+			se (posicao == posicaoConsulta) {
 				escreva(vetor[posicao] + "\n")	
 			}
 		}
@@ -35,7 +35,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 652; 
+ * @POSICAO-CURSOR = 558; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
