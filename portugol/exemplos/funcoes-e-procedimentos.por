@@ -2,18 +2,19 @@ programa
 {
 	
 	funcao inicio()
-	{
+ {
 		meuProcedimento1()
-		meuProcedimento2("Eu sou um procedimento, ou, função sem retrono. \n")
-		minhaFuncao1()
-		minhaFuncao2("Eu sou uma função, pois tenho um retrono. \n")
+		meuProcedimento2("Eu sou um procedimento, ou, função sem retorno. \n")
+		
+		cadeia resultadoDaFuncao1 = minhaFuncao1()
+		escreva(resultadoDaFuncao1)
 
-		escreva(minhaFuncao1())
-		escreva(minhaFuncao2("Eu sou uma função, pois tenho um retrono. \n"))	
+		cadeia resultadoDaFuncao2 = minhaFuncao2("Eu sou uma função, pois tenho um retorno. \n")
+		escreva(resultadoDaFuncao2)
 	}
 
 	funcao meuProcedimento1() {
-		escreva("Eu sou um procedimento, ou, função sem retrono. \n")
+		escreva("Eu sou um procedimento, ou, função sem retorno. \n")	
 	}
 
 	funcao meuProcedimento2(cadeia texto) {
@@ -21,13 +22,13 @@ programa
 	}
 
 	funcao cadeia minhaFuncao1() {
-		escreva("Eu sou uma função, pois tenho um retrono. \n")
-		retorne "Um texto qualquer \n"
+		escreva("Eu sou uma função, pois tenho um retorno. \n")
+		retorne "Retorno da função 1 \n"
 	}
 
 	funcao cadeia minhaFuncao2(cadeia texto) {
 		escreva(texto)
-		retorne "Um texto qualquer \n"
+		retorne "Retorno da função 2. \n"
 	}
 }
 /* $$$ Portugol Studio $$$ 

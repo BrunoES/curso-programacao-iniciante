@@ -18,15 +18,16 @@ programa
 
 		escreva("\n Informe uma posição para ser buscada no vetor: \n")
 		leia(posicaoConsulta)
-		
-		escreva("\n Realizando busca no vetor na posição " + posicaoConsulta + " \n")
-		para (inteiro posicao = 0; posicao < 10; posicao++)
-		{
-			se (posicao == posicaoConsulta) {
-				escreva(vetor[posicao] + "\n")	
+
+		escreva("\n Realiznado busca no vetor na posição " + posicaoConsulta + ": \n")
+		para(inteiro posicao = 0; posicao < 10; posicao++) {
+			// validar se a posição, é a que eu quero
+			se (posicao == posicaoConsulta - 1) {
+				escreva("Valor encontrado na posição " + posicaoConsulta + ":")
+				escreva(vetor[posicao] + "\n")
 			}
 		}
-		
+
 	}
 }
 
